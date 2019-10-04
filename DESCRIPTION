@@ -1,0 +1,17 @@
+Package: hotgenes
+Type: Package
+Title: Simulates Heat Physics on your RNA-seq Dataset for More Compelling Visualization
+Version: 0.1.0
+Authors@R: person("Yi Fei", "Huang", email = "yifei.huang@mail.utoronto.ca",
+                  role = c("aut", "cre"))
+Maintainer: Yi Fei Huang <yifei.huang@mail.utoronto.ca>
+Description: This package generates a visualization similar to that provided by the NCBI Sequence Viewer heatmap.
+    It improves on the NCBI Sequence Viewer by having a configurable physics tick simulator to model the RNA-seq expression values as if they were actually heat, warming up adjacent exons.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Depends: R (>= 3.1.0)
+Suggests: 
+    testthat
