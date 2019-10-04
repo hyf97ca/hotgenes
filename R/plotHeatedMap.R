@@ -6,7 +6,8 @@
 #'
 #' @param expression
 #' Input dataframe for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally;
-#'  this means that after loading column vectors the data frame should be transposed with t().
+#'  this means that after loading column vectors the data frame should be transposed with t(). In particular if you get "figure margins too large"
+#'  you are probably not transposing either this or the other parameter correctly.
 #' @param locations
 #' Input dataframe for the base pair number cooresponding with expression. This should have the same dimensions and organization as expression.
 #'

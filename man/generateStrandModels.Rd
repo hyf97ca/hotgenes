@@ -2,9 +2,12 @@
 % Please edit documentation in R/generateStrandModel.R
 \name{generateStrandModels}
 \alias{generateStrandModels}
+\alias{generateStrandModel}
 \title{\code{generateStrandModels}}
 \usage{
-generateStrandModels(startBase, endBase, fc, strand)
+generateStrandModels(startBase, endBase, fc, chr, strand, scaling = 1000)
+
+generateStrandModel(startBase, endBase, fc, chr, strand, scaling = 1000)
 }
 \arguments{
 \item{startBase}{The starting base pair number}
@@ -13,7 +16,11 @@ generateStrandModels(startBase, endBase, fc, strand)
 
 \item{fc}{The featurecounts object from rsubread after counting your alignment}
 
+\item{chr}{Chromosome; Should match Chr in fc}
+
 \item{strand}{+ or - strand to generate models for}
+
+\item{scaling}{scaling factor in how many base pairs should be represented per index (ex. 1000) to reduce computational complexity when simulating physics/plotting}
 }
 \value{
 A data frame containing the strand model.
