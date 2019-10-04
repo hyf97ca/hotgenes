@@ -17,7 +17,7 @@ library(hotgenes)
 ```
 
 ## Pitch
-![](./img/Pitch.png)
+![](./img/Pitch.PNG)
 
 ## Example
 
