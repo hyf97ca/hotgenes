@@ -12,9 +12,12 @@ You can install the released version of hotgenes from github using the following
 
 ``` r
 library(devtools)
-installgithub("<hyf97ca>/<hotgenes>")
-library(<hotgenes>)
+installgithub("hyf97ca/hotgenes")
+library(hotgenes)
 ```
+
+## Pitch
+![](./img/Pitch.png)
 
 ## Example
 
