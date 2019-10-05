@@ -15,6 +15,7 @@
 #' R color palette string, see hcl.colors. it is recommended to select a palette from \code{hcl.pals(type="sequential")}
 #'
 #' @import graphics
+#' @importFrom grDevices hcl.colors
 #' @export
 #'
 #' @examples
