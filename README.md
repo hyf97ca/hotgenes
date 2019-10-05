@@ -12,7 +12,7 @@ You can install the latest version of hotgenes from github using the following c
 
 ``` r
 library(devtools)
-installgithub("hyf97ca/hotgenes")
+install_github("hyf97ca/hotgenes")
 library(hotgenes)
 ```
 

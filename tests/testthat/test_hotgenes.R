@@ -5,7 +5,8 @@ context("hotgenes")
 
 # ==== BEGIN SETUP AND PREPARE =================================================
 
-load(system.file("data", "musCh1fc.Rda", package = "hotgenes"))
+#load(system.file("data", "musCh1fc.Rda", package = "hotgenes"))
+data(musCh1fc)
 
 # ==== END SETUP AND PREPARE ===================================================
 
@@ -26,7 +27,7 @@ test_that("a sample input produces the expected output",  {
 # stuff in tempdir().
 #
 
-remove(musCh1fc)
+#remove(musCh1fc)
 
 # ==== END  TEARDOWN AND RESTORE ===============================================
 
