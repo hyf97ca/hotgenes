@@ -1,5 +1,7 @@
 #' \code{simulateHeatSpread}
 #'
+#' Simulates heat spread through conductance on (a) strand model(s). Kind of looks like anti-aliasing. Makes smaller expressed exons more visible.
+#'
 #' @param .strandModel Strand model from generateStrandModel
 #' @param conductivity numeric between 0-1: 1 implies perfect equalization of heat between two adjacent cells in 1 iteration, 0 implies no heat transfer
 #' @param iterations integer number of cycles to simulate: should be 1 or greater
@@ -7,7 +9,14 @@
 #' @return simulated strand model
 #' @export
 #'
-# @examples
+#' @examples
+#' \dontrun{
+#' sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+#' smh <- simulateHeatSpread(sm, 0.001, 1000)
+#' smh1 <- simulateHeatSpread(sm, 1, 100)
+#' }
+#'
+
 simulateHeatSpread <- function(.strandModel, conductivity, iterations)
 {
   message("simulating heat spread with conductivity ", conductivity, " for ", iterations, " iterations...")

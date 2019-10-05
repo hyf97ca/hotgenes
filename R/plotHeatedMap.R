@@ -2,7 +2,7 @@
 
 #' \code{plotHeatedMap}
 #'
-#' \code{plotHeatedMap} is used to create a plot of a heated map of the specified matrix.
+#' Creates a plot of a heated map of the specified strand model and location model. Plot is adjusted to roughly look like a DNA strand/track.
 #'
 #' @param expression
 #' Input matrix for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally;
@@ -15,12 +15,15 @@
 #'
 #' @export
 #'
-# @examples
-# \dontrun
-# {
-#
-# }
-#
+#' @examples
+#' \dontrun{
+#'   sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+#'   x <- generateLocationModel(1, 195471971, 100000)
+#'   sm <- simulateHeatSpread(sm, 0.001, 1000)
+#'   plotHeatedMap(sm, x)
+#'   plotHeatedMap(expression=sm, locations=x, palette="Heat")
+#' }
+#'
 
 plotHeatedMap <- function(expression, locations, palette="Plasma")#c(2,0.5,0.4,2)
 {

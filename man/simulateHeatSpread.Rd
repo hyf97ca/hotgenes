@@ -17,5 +17,13 @@ simulateHeatSpread(.strandModel, conductivity, iterations)
 simulated strand model
 }
 \description{
-\code{simulateHeatSpread}
+Simulates heat spread through conductance on (a) strand model(s). Kind of looks like anti-aliasing. Makes smaller expressed exons more visible.
+}
+\examples{
+\dontrun{
+sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+smh <- simulateHeatSpread(sm, 0.001, 1000)
+smh1 <- simulateHeatSpread(sm, 1, 100)
+}
+
 }

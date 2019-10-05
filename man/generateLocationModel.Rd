@@ -18,5 +18,10 @@ Should match value used in generateStrandModel}
 A sequence containing the location model.
 }
 \description{
-\code{generateLocationModel}
+Convenience function for generating the locations on the DNA strand where exons are so that the x scale on the plot roughly makes sense.
+}
+\examples{
+\dontrun{
+   generateLocationModel(startBase=1, endBase=195471971, scaling=100000)
+}
 }

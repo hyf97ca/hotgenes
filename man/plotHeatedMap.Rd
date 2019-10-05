@@ -4,7 +4,7 @@
 \alias{plotHeatedMap}
 \title{\code{plotHeatedMap}}
 \usage{
-plotHeatedMap(expression, locations)
+plotHeatedMap(expression, locations, palette = "Plasma")
 }
 \arguments{
 \item{expression}{Input matrix for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally;
@@ -12,7 +12,19 @@ this means that after loading column vectors the matrix should be transposed wit
 you are probably not transposing either this or the other parameter correctly.}
 
 \item{locations}{Input sequence/matrix for the base pair number cooresponding with expression. This should have the same number of columns (and rows if matrix) as expression.}
+
+\item{palette}{R color palette string, see hcl.colors. it is recommended to select a palette from \code{hcl.pals(type="sequential")}}
 }
 \description{
-\code{plotHeatedMap} is used to create a plot of a heated map of the specified matrix.
+Creates a plot of a heated map of the specified strand model and location model. Plot is adjusted to roughly look like a DNA strand/track.
+}
+\examples{
+\dontrun{
+  sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+  x <- generateLocationModel(1, 195471971, 100000)
+  sm <- simulateHeatSpread(sm, 0.001, 1000)
+  plotHeatedMap(sm, x)
+  plotHeatedMap(expression=sm, locations=x, palette="Heat")
+}
+
 }

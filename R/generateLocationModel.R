@@ -1,4 +1,8 @@
+#generateLocationModel.R
+
 #' \code{generateLocationModel}
+#'
+#' Convenience function for generating the locations on the DNA strand where exons are so that the x scale on the plot roughly makes sense.
 #'
 #' @param startBase The starting base pair number
 #' @param endBase The ending base pair number
@@ -8,11 +12,10 @@
 #' @return A sequence containing the location model.
 #' @export
 #'
-# @examples
-#\dontrun
-#{
-#    generateLocationModel(1, 195471971)
-#}
+#' @examples
+#'\dontrun{
+#'    generateLocationModel(startBase=1, endBase=195471971, scaling=100000)
+#'}
 #
 
 generateLocationModel <- function(startBase, endBase, scaling=1000)

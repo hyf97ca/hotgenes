@@ -1,4 +1,8 @@
+#generateStrandModel.R
+
 #' \code{generateStrandModels}
+#'
+#' Creates a model of a DNA strand in the form of a matrix (data frames are too slow) for further processing/plotting.
 #'
 #' @param startBase The starting base pair number
 #' @param endBase The ending base pair number
@@ -10,13 +14,15 @@
 #' @return A matrix containing the strand model.
 #' @export
 #'
-# @examples
-# \dontrun
-# {
-#     fc <- featureCounts(files=bamFile, annot.ext=annotation, useMetaFeatures=FALSE)
-#     sm <- generateStrandModels(1, 195471971, fc, "Ch1", "-")
-# }
-#
+#' @examples
+#' \dontrun{
+#'    fc <- featureCounts(files=bamFile, annot.ext=annotation, useMetaFeatures=FALSE)
+#'    data(musCh1fc)
+#'    sm <- generateStrandModels(startBase=1, endBase=195471971, fc=musCh1fc, chr="chr1", strand="-", scaling=100000)
+#'    sm1 <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "+")
+#'    sm2 <- generateStrandModels(3000000, 3217000, musCh1fc, "chr1", "-")
+#' }
+#'
 generateStrandModels <- function(startBase, endBase, fc, chr, strand, scaling=1000)
 {
   fcLength = length(fc[["counts"]][,1])
