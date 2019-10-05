@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-![](./inst/extdata/musCh1.PNG)
+![](./inst/extdata/musCh1.PNG)<br/>
 The goal of hotgenes is to take as input RNA-seq data (aligned with Rsubread and counted using featureCounts) and create a plot of the genome of a selected area of the data. The visualization is adjusted using a simulation of heat conduction to fill in the gaps between exons to give a rough idea where the 'hotspots' of expression are in the selected area.
 
 ## Installation

@@ -2,11 +2,13 @@
 #'
 #' Simulates heat spread through conductance on (a) strand model(s). Kind of looks like anti-aliasing. Makes smaller expressed exons more visible.
 #'
+#' @name simulateHeatSpread
 #' @param .strandModel Strand model from generateStrandModel
 #' @param conductivity numeric between 0-1: 1 implies perfect equalization of heat between two adjacent cells in 1 iteration, 0 implies no heat transfer
 #' @param iterations integer number of cycles to simulate: should be 1 or greater
 #'
 #' @return simulated strand model
+#' @import utils
 #' @export
 #'
 #' @examples

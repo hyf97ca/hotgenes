@@ -3,12 +3,9 @@
 \name{plotHeatedMap}
 \alias{plotHeatedMap}
 \title{\code{plotHeatedMap}}
-\usage{
-plotHeatedMap(expression, locations, palette = "Plasma")
-}
 \arguments{
-\item{expression}{Input matrix for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally;
-this means that after loading column vectors the matrix should be transposed with t(). generateStrandModel already does this. In particular if you get "figure margins too large"
+\item{expression}{Input matrix for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally.\cr
+This means that after loading column vectors the matrix should be transposed with t(). generateStrandModel already does this. In particular if you get "figure margins too large"
 you are probably not transposing either this or the other parameter correctly.}
 
 \item{locations}{Input sequence/matrix for the base pair number cooresponding with expression. This should have the same number of columns (and rows if matrix) as expression.}
