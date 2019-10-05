@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateLocationModel.R
 \name{generateLocationModel}
 \alias{generateLocationModel}
-\title{\code{generateLocationModels}}
+\title{\code{generateLocationModel}}
 \usage{
 generateLocationModel(startBase, endBase, scaling = 1000)
 }
@@ -18,5 +18,5 @@ Should match value used in generateStrandModel}
 A sequence containing the location model.
 }
 \description{
-\code{generateLocationModels}
+\code{generateLocationModel}
 }

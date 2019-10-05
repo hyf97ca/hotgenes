@@ -23,7 +23,7 @@ generateStrandModel(startBase, endBase, fc, chr, strand, scaling = 1000)
 \item{scaling}{scaling factor in how many base pairs should be represented per index (ex. 1000) to reduce computational complexity when simulating physics/plotting}
 }
 \value{
-A data frame containing the strand model.
+A matrix containing the strand model.
 }
 \description{
 \code{generateStrandModels}
