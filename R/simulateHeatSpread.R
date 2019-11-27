@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+#' sm <- generateStrandModel(1, 195471971, musCh1fc, "chr1", "-", 100000)
 #' smh <- simulateHeatSpread(sm, 0.001, 1000)
 #' smh1 <- simulateHeatSpread(sm, 1, 100)
 #' }
@@ -34,16 +34,24 @@ simulateHeatSpread <- function(.strandModel, conductivity, iterations)
       while(strand[currentMaxIndex] > 0.1)
       {
         #do physics on two sides of actual strand then negate
+        #quick and dirty self-derived calculation because most available formulas are too complicated and don't have the assumptions
+        #that we are able to make, of uniform material, a fixed amount of heat being instantaneously generated, conduction btw cells
         if (currentMaxIndex > 1)
           if(.strandModel[columnIndex, currentMaxIndex] > .strandModel[columnIndex, currentMaxIndex - 1])
           {
+            #explanation of calculation: check cell to the right of current cell
+            #transfer conductivity * the amount of heat that would even out the cells
             transfer = (.strandModel[columnIndex, currentMaxIndex] - .strandModel[columnIndex, currentMaxIndex - 1])/2 * conductivity
             .strandModel[columnIndex, currentMaxIndex] = .strandModel[columnIndex, currentMaxIndex] - transfer
             .strandModel[columnIndex, currentMaxIndex - 1] = .strandModel[columnIndex, currentMaxIndex - 1] + transfer
           }
+        #It's ok that we do the first calculation before the second one because we don't lose or gain any heat
+        #and the values will converge with successive iterations
         if (currentMaxIndex < length(strand))
           if (.strandModel[columnIndex, currentMaxIndex] > .strandModel[columnIndex, currentMaxIndex + 1])
           {
+            #explanation of calculation: check cell to the right of current cell
+            #transfer conductivity * the amount of heat that would even out the cells
             transfer = (.strandModel[columnIndex, currentMaxIndex] - .strandModel[columnIndex, currentMaxIndex + 1])/2 * conductivity
             .strandModel[columnIndex, currentMaxIndex] = .strandModel[columnIndex, currentMaxIndex] - transfer
             .strandModel[columnIndex, currentMaxIndex + 1] = .strandModel[columnIndex, currentMaxIndex + 1] + transfer

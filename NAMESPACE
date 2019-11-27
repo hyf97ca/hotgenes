@@ -2,7 +2,6 @@
 
 export(generateLocationModel)
 export(generateStrandModel)
-export(generateStrandModels)
 export(plotHeatedMap)
 export(simulateHeatSpread)
 import(graphics)

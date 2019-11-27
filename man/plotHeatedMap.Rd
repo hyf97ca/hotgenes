@@ -3,6 +3,9 @@
 \name{plotHeatedMap}
 \alias{plotHeatedMap}
 \title{\code{plotHeatedMap}}
+\usage{
+plotHeatedMap(expression, locations, palette = "Plasma")
+}
 \arguments{
 \item{expression}{Input matrix for adjusted RNA-seq values. the dataframe should be organized such that RNA-seq values run horizontally.\cr
 This means that after loading column vectors the matrix should be transposed with t(). generateStrandModel already does this. In particular if you get "figure margins too large"
@@ -17,7 +20,7 @@ Creates a plot of a heated map of the specified strand model and location model.
 }
 \examples{
 \dontrun{
-  sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+  sm <- generateStrandModel(1, 195471971, musCh1fc, "chr1", "-", 100000)
   x <- generateLocationModel(1, 195471971, 100000)
   sm <- simulateHeatSpread(sm, 0.001, 1000)
   plotHeatedMap(sm, x)

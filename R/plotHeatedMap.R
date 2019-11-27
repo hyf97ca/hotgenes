@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+#'   sm <- generateStrandModel(1, 195471971, musCh1fc, "chr1", "-", 100000)
 #'   x <- generateLocationModel(1, 195471971, 100000)
 #'   sm <- simulateHeatSpread(sm, 0.001, 1000)
 #'   plotHeatedMap(sm, x)
@@ -28,16 +28,13 @@
 #' }
 #'
 
-library(grDevices)
-library(graphics)
-
 plotHeatedMap <- function(expression, locations, palette="Plasma")#c(2,0.5,0.4,2)
 {
   old.par <- par(no.readonly = TRUE)
   old.scipen <- getOption("scipen")
   options(scipen=10)
   par(mfrow=c(max(12, nrow(expression)),1), mar=c(2,1,0.4,2))
-  for (columnIndex in 1:(nrow(expression)))
+  for (columnIndex in 1 : (nrow(expression)))
   {
     Z = as.matrix(expression[columnIndex,])
     if (is.matrix(locations) | is.data.frame(locations)){
@@ -49,7 +46,8 @@ plotHeatedMap <- function(expression, locations, palette="Plasma")#c(2,0.5,0.4,2
     }
     head(Z)
     head(X)
-    image(x=X, y=1, z = log(Z), yaxt = "n", xlab = "bp", ylab = "", col = hcl.colors(1024, palette=palette))
+    graphics::image(x=X, y=1, z = log(Z), yaxt = "n",
+                    xlab = "bp", ylab = "", col = grDevices::hcl.colors(1024, palette=palette))
   }
   par(old.par)
   options(scipen=old.scipen)
