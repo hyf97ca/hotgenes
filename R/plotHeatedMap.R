@@ -30,6 +30,7 @@
 
 plotHeatedMap <- function(expression, locations, palette="Plasma")#c(2,0.5,0.4,2)
 {
+  #only returns parameters that can be set by subsequent par()
   old.par <- par(no.readonly = TRUE)
   old.scipen <- getOption("scipen")
   options(scipen=10)
@@ -49,6 +50,7 @@ plotHeatedMap <- function(expression, locations, palette="Plasma")#c(2,0.5,0.4,2
     graphics::image(x=X, y=1, z = log(Z), yaxt = "n",
                     xlab = "bp", ylab = "", col = grDevices::hcl.colors(1024, palette=palette))
   }
+  #restore old parameters. pin is supposed to be settable by par
   par(old.par)
   options(scipen=old.scipen)
 }

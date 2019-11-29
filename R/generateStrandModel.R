@@ -18,8 +18,9 @@
 #'
 #' @examples
 #' \dontrun{
+#'    #featureCounts() is from RSubread package; only run this if that is installed
 #'    fc <- featureCounts(files=bamFile, annot.ext=annotation, useMetaFeatures=FALSE)
-#'    data(musCh1fc)
+#'    #replace fc with the one loaded from featureCounts if you are using your own data
 #'    sm <- generateStrandModel(startBase=1, endBase=195471971,
 #'     fc=musCh1fc, chr="chr1", strand="-", scaling=100000)
 #'    sm1 <- generateStrandModel(1, 195471971, musCh1fc, "chr1", "+")
