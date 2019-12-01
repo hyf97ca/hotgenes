@@ -1,10 +1,10 @@
 #generateStrandModel.R
 
-#' @title \code{generateStrandModel}
+#' @title Create a Strand Model
 #'
-#' Creates a model of a DNA strand in the form of a matrix (data frames are too slow) for further processing/plotting.
+#' generateStrandModel Creates a model of a DNA strand in the form of a matrix (data frames are too slow) for further processing/plotting.
 #'
-#' @name generateStrandModels
+#' @name generateStrandModel
 #' @param startBase The starting base pair number
 #' @param endBase The ending base pair number
 #' @param fc The featurecounts object from rsubread after counting your alignment

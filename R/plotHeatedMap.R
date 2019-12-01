@@ -14,6 +14,8 @@
 #' @param palette
 #' R color palette string, see hcl.colors. it is recommended to select a palette from \code{hcl.pals(type="sequential")}
 #'
+#' @return No return value, but tries to save par() and scipen(), create a plot with custom par and scipen() settings and restore old settings.
+#'
 #' @import graphics
 #' @importFrom grDevices hcl.colors
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateLocationModel.R
 \name{generateLocationModel}
 \alias{generateLocationModel}
-\title{\code{generateLocationModel}}
+\title{Create a 'Location Model'}
 \usage{
 generateLocationModel(startBase, endBase, scaling = 1000)
 }
@@ -19,6 +19,8 @@ A sequence containing the location model.
 }
 \description{
 Convenience function for generating the locations on the DNA strand where exons are so that the x scale on the plot roughly makes sense.
+Yes, this is a wrapper for a regular sequence generating function, but it takes similar inputs as generateStrandModel and more importantly adds context to the
+parameter list.
 }
 \examples{
 \dontrun{

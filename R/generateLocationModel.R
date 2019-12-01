@@ -1,8 +1,10 @@
 #generateLocationModel.R
 
-#' \code{generateLocationModel}
+#' Create a 'Location Model'
 #'
 #' Convenience function for generating the locations on the DNA strand where exons are so that the x scale on the plot roughly makes sense.
+#' Yes, this is a wrapper for a regular sequence generating function, but it takes similar inputs as generateStrandModel and more importantly adds context to the
+#' parameter list.
 #'
 #' @param startBase The starting base pair number
 #' @param endBase The ending base pair number
