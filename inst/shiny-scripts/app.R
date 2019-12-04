@@ -48,23 +48,23 @@ server <- function(input, output) {
   smpos <- reactive(
   {
     #use shiny Progress class as per https://shiny.rstudio.com/articles/progress.html
-    progress <- shiny::Progress$new(min=0, max=ceiling(length(musCh1fc[["counts"]][,1])/1000))
+    progress <- shiny::Progress$new(min=0, max=length(musCh1fc[["counts"]][,1]))
     on.exit(progress$close())
     progress$set(value=0,  message="Loading positive strand...")
     #generate model and cache
     hotgenes::generateStrandModel(startBase=dnaStart, endBase=dnaEnd,
                                   fc=musCh1fc, chr=dnaChr, strand="+", scaling=baseScale,
-                                  updateProgressBar=function(){progress$inc(1)})
+                                  updateProgressBar=function(){progress$inc(1000)})
   })
   smneg <- reactive(
   {
-    progress <- shiny::Progress$new(min=0, max=ceiling(length(musCh1fc[["counts"]][,1])/1000))
+    progress <- shiny::Progress$new(min=0, max=length(musCh1fc[["counts"]][,1]))
     on.exit(progress$close())
     progress$set(value=0, message="Loading negative strand...")
     #generate model and cache
     hotgenes::generateStrandModel(startBase=dnaStart, endBase=dnaEnd,
                                   fc=musCh1fc, chr=dnaChr, strand="-", scaling=baseScale,
-                                  updateProgressBar=function(){progress$inc(1)})
+                                  updateProgressBar=function(){progress$inc(1000)})
 
   })
   smr <- reactive(

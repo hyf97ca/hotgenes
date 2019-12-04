@@ -6,7 +6,8 @@
 
 generateStrandModel Creates a model of a DNA strand in the form of a matrix (data frames are too slow) for further processing/plotting.}
 \usage{
-generateStrandModel(startBase, endBase, fc, chr, strand, scaling = 1000)
+generateStrandModel(startBase, endBase, fc, chr, strand, scaling = 1000,
+  updateProgressBar = NULL)
 }
 \arguments{
 \item{startBase}{The starting base pair number}
@@ -19,7 +20,11 @@ generateStrandModel(startBase, endBase, fc, chr, strand, scaling = 1000)
 
 \item{strand}{+ or - strand to generate models for}
 
-\item{scaling}{scaling factor in how many base pairs should be represented per index (ex. 1000) to reduce computational complexity when simulating physics/plotting}
+\item{scaling}{scaling factor in how many base pairs should be represented per index (ex. 1000) to
+reduce computational complexity when simulating physics/plotting}
+
+\item{updateProgressBar}{a function for linking with shiny's progress bar. This will be called if not NULL
+when progress bar is to be updated (every 1000 processed features)}
 }
 \value{
 A matrix containing the strand model.

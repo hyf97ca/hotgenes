@@ -14,7 +14,7 @@ A function that launches the shiny app for hotgenes.
 }
 \examples{
 \dontrun{
-
+  runHotgenes()
 }
 
 }
