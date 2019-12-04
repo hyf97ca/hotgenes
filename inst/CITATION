@@ -1,0 +1,13 @@
+citHeader("To cite hotgenes in publications use:")
+
+citEntry(
+  entry    = "Unpublished",
+  title    = "hotgenes",
+  author   = "Yi Fei huang",
+  note     = "Unpublished",
+  year     = "2019",
+  url      = "https://github.com/hyf97ca/hotgenes",
+  textVersion = paste(
+    "Huang, Y. F. (2019). hotgenes. Retrieved from https://github.com/hyf97ca/hotgenes."
+  )
+)

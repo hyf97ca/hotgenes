@@ -10,7 +10,10 @@
 #' @param fc The featurecounts object from rsubread after counting your alignment
 #' @param chr Chromosome; Should match Chr in fc
 #' @param strand \+ or \- strand to generate models for
-#' @param scaling scaling factor in how many base pairs should be represented per index (ex. 1000) to reduce computational complexity when simulating physics/plotting
+#' @param scaling scaling factor in how many base pairs should be represented per index (ex. 1000) to
+#'                reduce computational complexity when simulating physics/plotting
+#' @param updateProgressBar a function for linking with shiny's progress bar. This will be called if not NULL
+#'                          when progress bar is to be updated (every 1000 processed features)
 #'
 #' @return A matrix containing the strand model.
 #' @import utils
@@ -28,7 +31,7 @@
 #' }
 #'
 
-generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=1000)
+generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=1000, updateProgressBar=NULL)
 {
   fcLength = length(fc[["counts"]][,1])
   numDatasets = length(fc[["counts"]][1,])
@@ -37,7 +40,10 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
 
   for (i in 1:numDatasets)
   {
-    message("Starting processing of chromsome ", chr, " strand ", strand, " in ", fc[["targets"]][i])
+    if (!shiny::isRunning())
+    {
+      message("Starting processing of chromsome ", chr, " strand ", strand, " in ", fc[["targets"]][i])
+    }
     genome <- vector(mode = "numeric", length = ceiling((endBase - startBase)/scaling) + 1)
 
     #transcripts per kilobase million sum value
@@ -45,12 +51,21 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
     # Wagner GP, Kin K, Lynch VJ. Measurement of mRNA abundance using RNA-seq data: RPKM measure
     # is inconsistent among samples. Theory in biosciences. 2012 Dec 1;131(4):281-5.
     tpmSum <- 0
-
-    prog <- txtProgressBar(min = 0, max = fcLength, style=3)
+    if (!shiny::isRunning())
+    {
+      prog <- txtProgressBar(min = 0, max = fcLength, style=3)
+    }
     for (j in 1:fcLength)
     {
       entry <- fc[["annotation"]][j,]
-      setTxtProgressBar(prog, j)
+      if (!shiny::isRunning())
+      {
+        setTxtProgressBar(prog, j)
+      }
+      else if (!is.null(updateProgressBar) & j %% 1000 == 0)
+      {
+        updateProgressBar()
+      }
       #reads per kilobase
       rpk <- fc[["counts"]][j,i] / ((entry[["Length"]])/1000)
       tpmSum <- tpmSum + rpk
@@ -97,7 +112,10 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
     genome <- (genome/tpmDivFactor) + rep_len(x=0.1, length.out = length(genome))
 
     #save into models
-    message("\n", fc[["targets"]][i], i, " done")
+    if (!shiny::isRunning())
+    {
+      message("\n", fc[["targets"]][i], i, " done")
+    }
     models[[i]] <- genome
 
   }

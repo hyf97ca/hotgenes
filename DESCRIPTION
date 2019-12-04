@@ -20,7 +20,9 @@ Imports:
     shiny,
     shinyWidgets
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Enhances:
     Rsubread
-
+VignetteBuilder: knitr

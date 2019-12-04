@@ -21,11 +21,17 @@
 
 simulateHeatSpread <- function(.strandModel, conductivity, iterations)
 {
-  message("simulating heat spread with conductivity ", conductivity, " for ", iterations, " iterations...")
-  prog <- txtProgressBar(min = 0, max = iterations, style=3)
+  if (!shiny::isRunning())
+  {
+    message("simulating heat spread with conductivity ", conductivity, " for ", iterations, " iterations...")
+    prog <- txtProgressBar(min = 0, max = iterations, style=3)
+  }
   for (it in 1:iterations)
   {
-    setTxtProgressBar(prog, it)
+    if (!shiny::isRunning())
+    {
+      setTxtProgressBar(prog, it)
+    }
     for (columnIndex in 1:(nrow(.strandModel)))
     {
       strand <- .strandModel[columnIndex,]
