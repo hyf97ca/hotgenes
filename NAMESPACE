@@ -3,6 +3,7 @@
 export(generateLocationModel)
 export(generateStrandModel)
 export(plotHeatedMap)
+export(rebuildStrandModel)
 export(runHotgenes)
 export(simulateHeatSpread)
 import(graphics)

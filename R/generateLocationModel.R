@@ -22,7 +22,7 @@
 
 generateLocationModel <- function(startBase, endBase, scaling=1000)
 {
-  locationModel <- t(as.matrix(seq(from=startBase, to=endBase + scaling + 1, by=scaling)))
+  locationModel <- t(as.matrix(seq(from=startBase, to=endBase + scaling - 1, by=scaling)))
   return(locationModel)
   #return(format(t(as.matrix(seq(from=startBase, to=endBase + scaling, by=scaling))), scientific = FALSE))
 }

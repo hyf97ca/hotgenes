@@ -39,7 +39,7 @@ simulateHeatSpread <- function(.strandModel, conductivity, iterations)
         if (currentMaxIndex > 1)
           if(.strandModel[columnIndex, currentMaxIndex] > .strandModel[columnIndex, currentMaxIndex - 1])
           {
-            #explanation of calculation: check cell to the right of current cell
+            #explanation of calculation: check cell to the left of current cell
             #transfer conductivity * the amount of heat that would even out the cells
             transfer = (.strandModel[columnIndex, currentMaxIndex] - .strandModel[columnIndex, currentMaxIndex - 1])/2 * conductivity
             .strandModel[columnIndex, currentMaxIndex] = .strandModel[columnIndex, currentMaxIndex] - transfer
