@@ -15,7 +15,10 @@ library(hotgenes)
 ```
 
 ## Overview
-![](./inst/extdata/Pitch.PNG)
+
+``` r
+browseVignettes("hotgenes")
+```
 
 This package contains six functions that form the end of a pipeline, for displaying RNA-seq data. The user should have a featureCounts output data
 structure to start with (one is included with package as example data). 
@@ -29,6 +32,8 @@ simulateHeatSpread() applies a self-derived 'heat' simulation that makes smaller
 plotHeatedMap() is a plotting function that makes use of the graphics and grdevices package to create a ribbon-like plot representing a strand of DNA and the (modified) RNA-seq values as 'heat' along the strand. The actual values of 'heat' vary greatly with different parameters and therefore are not useful in a legend; this package is mostly for getting the big picture and not for an accurate reading of actual expression levels.
 
 runHotgenes() starts the shiny app, which uses the example dataset. It should be straightforward to modify the shiny script to use your own custom dataset; loading custom datasets in-app can be implemented if requested.
+
+![](./inst/extdata/Pitch.PNG)
 
 ![](./inst/extdata/musCh1.PNG)
 
