@@ -33,6 +33,8 @@
 
 generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=1000, updateProgressBar=NULL)
 {
+  stopifnot({startBase < endBase & !is.null(fc) & !is.null(chr) & !is.null(strand)})
+
   fcLength = length(fc[["counts"]][,1])
   numDatasets = length(fc[["counts"]][1,])
 
@@ -83,17 +85,20 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
           startInVector <- 1
         for (k in startInVector : endInVector)
         {
-          if (k == startInVector & (entry[["Start"]] - startBase)/scaling > k)
+          #case where the feature only covers end half of a cell (ie. starting end)
+          if (k == startInVector & (entry[["Start"]] - startBase)/scaling > k & entry[["Length"]] > scaling)
           {
-            genome[k] <- genome[k] + rpk * ((entry[["Start"]] - startBase) - startInVector*scaling)/scaling
+            genome[k] <- genome[k] + rpk * ((entry[["Start"]] - startBase) - startInVector*scaling)/(scaling*(endInVector-startInVector))
           }
-          else if (k == endInVector & (entry[["End"]] - startBase)/scaling < k)
+          #case where feature only covers start half of a cell (ie. ending end)
+          else if (k == endInVector & (entry[["End"]] - startBase)/scaling < k & entry[["Length"]] > scaling)
           {
-            genome[k] <- genome[k] + rpk * (endInVector*scaling - (entry[["End"]] - startBase))/scaling
+            genome[k] <- genome[k] + rpk * (endInVector*scaling - (entry[["End"]] - startBase))/(scaling*(endInVector-startInVector))
           }
+          #general case; feature covers entire cell or is entirely contained
           else
           {
-            genome[k] <- genome[k] + rpk
+            genome[k] <- genome[k] + rpk/(endInVector-startInVector)
           }
         }
       }
@@ -151,6 +156,7 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
 rebuildStrandModel <- function(strandModel, newStartBase, newEndBase, newScaling, startBase, endBase, scaling)
 {
   stopifnot({newScaling %% scaling == 0})
+  stopifnot({startBase < endBase & newStartBase < newEndBase & startBase <= newStartBase & endBase >= newEndBase})
 
   rebuilt <- list()
 

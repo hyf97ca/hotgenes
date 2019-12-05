@@ -17,3 +17,82 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(hotgenes)
 ```
+
+# Getting started
+
+Running the following in sequence should get you an output plot:
+
+```{r eval=FALSE}
+    sm <- generateStrandModel(startBase=1, endBase=195471971,
+     fc=musCh1fc, chr="chr1", strand="-", scaling=100000)
+    lm <- generateLocationModel(startBase=1, endBase=195471971, scaling=100000)
+    smh <- simulateHeatSpread(.strandModel=sm, conductivity=0.01, iterations=5)
+    plotHeatedMap(smh, lm)
+```
+
+# Explanation
+
+The above code loads the example dataset, musCh1fc, which is included with the package. It is the output from featureCounts() from Rsubread.
+To load your own custom dataset, you can substitute your own data object in the fc parameter.
+
+The central data structure of the hotgenes package is the strand model, which is a matrix of row vectors. Each row corresponds to one set of RNA-seq
+data from your featurecounts file. A strand model is made with a specific start base, end base, and scale.
+The first cell in the row represents aggregate RNA-seq readings from the start base (1) to start + scaling (100000) bases. the last row similarly represents the last scaling bases until the end base (195471971).
+
+If you are using your own dataset, use relevant values for it; if your strand is three million base pairs long then endBase should be three million.
+Similarly, larger DNA strands will be processed much faster if scaling is higher. Aim for 1000 cells in the row vector; This will ensure a relatively
+fast calculation without sacrificing much resolution.
+
+
+
+After the strand model is generated, it is (optionally) further processed by simulateHeatSpread(). This function models heat flow between cells in
+the strand model; 'heat' flows from high expression areas to low expression areas adjacent. The total 'heat' is unchanged. Essentially, individual
+cells are made less 'hot' but adjacent cells will share some of the heat, making the expression hotspot more visible while creating a glowing visual
+effect.
+
+Finally, a plot is generated with plotHeatedMap(). This takes in a strand model (processed or not) as well as a row vector (location model) which
+maps each cell to where it should go across the DNA strand. 
+
+generateLocationModel() is a helper function that creates such a row vector based on the parameters given which should match that of generateStrandModel. Essentially it's a regular sequence generator that helps label the strand model.
+
+Optionally a palette can be specified as per hcl.colors from the grDevices package. You should pick a palette recommended for heatmaps.
+
+
+# Shiny app
+
+The shiny app can be started by running the following code:
+
+```{r eval=FALSE}
+runHotgenes()
+```
+
+This shiny app is a wrapper for the above functions with some additional optimizations.
+
+## Use your own data with the shiny app
+
+You will have to download the package source and edit the shiny script.
+
+To use your own data, edit the following code in app.R in inst/shiny-scripts:
+
+```{r eval=FALSE}
+#DNA strand to be rendered start bp
+dnaStart <- 1
+#DNA strand to be rendered end bp
+dnaEnd <- 195471971
+#1 is most flexible, might speed up if use 1000; the scaling options must be divisible by this
+baseScale <- 1000
+#chromosome number (required for reading featureCounts)
+dnaChr <- "chr1"
+#feature counts data structure to use
+featureCounts <- musCh1fc
+```
+
+Specifically, point your own data to featureCounts, and edit dnaStart, dnaEnd, dnaChr as appropriate for that dataSet.
+
+# Limitations
+
+- hotgenes is only capable of rendering one chromosome at a time. Since the featureCounts data structure is used for all chromosomes,
+the specific chromosome will have to be specified.
+
+- hotgenes can render multiple datasets (for one chromosome) in the same plot because the featureCounts data structure supports multiple datasets.
+However, your computer's processing power (as of 2019) is probably too low for a snappy result; do so at your own discretion.

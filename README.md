@@ -17,7 +17,7 @@ library(hotgenes)
 ## Overview
 ![](./inst/extdata/Pitch.PNG)
 
-This package contains six functions that form the end of a pipeline, for displaying RNA-seq data. The user should have a featurecounts output data
+This package contains six functions that form the end of a pipeline, for displaying RNA-seq data. The user should have a featureCounts output data
 structure to start with (one is included with package as example data). 
 
 The generateStrandModel() function creates a data structure for further processing. rebuildStrandModel() is much faster because it uses an existing strandModel to build another, smaller strandModel that represents less DNA; it is mostly only useful for the shiny app. 
@@ -34,7 +34,7 @@ runHotgenes() starts the shiny app, which uses the example dataset. It should be
 
 ## Contributions
 
-The author of the package is Yi Fei Huang. All code in this package was written from scratch in RStudio by Yi Fei Huang using available package API documentation and examples. The TPM calculation used to normalize the counts was originally proposed by Wagner GP, Kin K, Lynch VJ. The package assumes preprocessing of data by Rsubread and its featurecounts subcomponent. It directly takes in a featurecounts object provided by Rsubread as part of the input. Inspiration for package structure and comments was drawn from Rpt by Boris Steipe. The example data was constructed using instructions from Phipson, B., Doyle, M., & Dashnow, H. using raw data from Fu, N. Y., Rios, A. C., Pal, B., Soetanto, R. et al.
+The author of the package is Yi Fei Huang. All code in this package was written from scratch in RStudio by Yi Fei Huang using available package API documentation and examples. The TPM calculation used to normalize the counts was originally proposed by Wagner GP, Kin K, Lynch VJ. The package assumes preprocessing of data by Rsubread and its featurecounts subcomponent. It directly takes in a featureCounts object provided by Rsubread as part of the input. Inspiration for package structure and comments was drawn from Rpt by Boris Steipe. The example data was constructed using instructions from Phipson, B., Doyle, M., & Dashnow, H. using raw data from Fu, N. Y., Rios, A. C., Pal, B., Soetanto, R. et al.
 
 ## References
 
