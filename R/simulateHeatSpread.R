@@ -21,12 +21,16 @@
 
 simulateHeatSpread <- function(.strandModel, conductivity, iterations)
 {
-  stopifnot({iterations >= 1})
+  if (iterations < 0 | conductivity < 0 | conductivity > 1 | is.null(.strandModel))
+    stop("invalid parameters")
   if (!shiny::isRunning())
   {
     message("simulating heat spread with conductivity ", conductivity, " for ", iterations, " iterations...")
     prog <- txtProgressBar(min = 0, max = iterations, style=3)
   }
+
+  if (iterations == 0 | conductivity == 0) return(.strandModel)
+
   for (it in 1:iterations)
   {
     if (!shiny::isRunning())

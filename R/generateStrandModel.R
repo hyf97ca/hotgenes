@@ -33,7 +33,8 @@
 
 generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=1000, updateProgressBar=NULL)
 {
-  stopifnot({startBase < endBase & !is.null(fc) & !is.null(chr) & !is.null(strand)})
+  if (!(startBase < endBase & !is.null(fc) & !is.null(chr) & !is.null(strand)))
+    stop("Invalid parameters")
 
   fcLength = length(fc[["counts"]][,1])
   numDatasets = length(fc[["counts"]][1,])
@@ -155,8 +156,8 @@ generateStrandModel <- function(startBase, endBase, fc, chr, strand, scaling=100
 #'
 rebuildStrandModel <- function(strandModel, newStartBase, newEndBase, newScaling, startBase, endBase, scaling)
 {
-  stopifnot({newScaling %% scaling == 0})
-  stopifnot({startBase < endBase & newStartBase < newEndBase & startBase <= newStartBase & endBase >= newEndBase})
+  if (!(newScaling %% scaling == 0 & startBase < endBase & newStartBase < newEndBase & startBase <= newStartBase & endBase >= newEndBase))
+    stop("Invalid parameters")
 
   rebuilt <- list()
 
