@@ -72,7 +72,7 @@ Victor Perrier, Fanny Meyer and David Granjon (2019). shinyWidgets: Custom Input
 ``` r
 library(hotgenes)
 data(musCh1fc)
-sm <- generateStrandModels(1, 195471971, musCh1fc, "chr1", "-", 100000)
+sm <- generateStrandModel(1, 195471971, musCh1fc, "chr1", "-", 100000)
 x <- generateLocationModel(1, 195471971, 100000)
 sm <- simulateHeatSpread(sm, 0.001, 1000)
 plotHeatedMap(sm, x)
