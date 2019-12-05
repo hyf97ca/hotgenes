@@ -1,7 +1,7 @@
 Package: hotgenes
 Type: Package
 Title: Simulates Heat Physics on your RNA-seq Dataset for More Compelling Visualization
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: person("Yi Fei", "Huang", email = "yifei.huang@mail.utoronto.ca",
                   role = c("aut", "cre"))
 Maintainer: Yi Fei Huang <yifei.huang@mail.utoronto.ca>

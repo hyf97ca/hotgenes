@@ -10,7 +10,10 @@ dnaStart <- 1
 dnaEnd <- 195471971
 #1 is most flexible, might speed up if use 1000; the scaling options must be divisible by this
 baseScale <- 1000
+#chromosome number (required for reading featureCounts)
 dnaChr <- "chr1"
+#feature counts data structure to use
+featureCounts <- musCh1fc
 
 ui <- fluidPage(
   titlePanel("Hotgenes"),
@@ -37,7 +40,7 @@ ui <- fluidPage(
            numericInput("conductivity", "Heat 'conductivity'", min= 0, max = 1, value = 0.1, step = 0.05)
            )
   ),
-  tags$b("Heated Maps"),
+  tags$b("Heated Map(s)"),
   tags$br(),
   tags$br(),
   plotOutput("heatedmap")
@@ -48,22 +51,22 @@ server <- function(input, output) {
   smpos <- reactive(
   {
     #use shiny Progress class as per https://shiny.rstudio.com/articles/progress.html
-    progress <- shiny::Progress$new(min=0, max=length(musCh1fc[["counts"]][,1]))
+    progress <- shiny::Progress$new(min=0, max=length(featureCounts[["counts"]][,1]))
     on.exit(progress$close())
     progress$set(value=0,  message="Loading positive strand...")
     #generate model and cache
     hotgenes::generateStrandModel(startBase=dnaStart, endBase=dnaEnd,
-                                  fc=musCh1fc, chr=dnaChr, strand="+", scaling=baseScale,
+                                  fc=featureCounts, chr=dnaChr, strand="+", scaling=baseScale,
                                   updateProgressBar=function(){progress$inc(1000)})
   })
   smneg <- reactive(
   {
-    progress <- shiny::Progress$new(min=0, max=length(musCh1fc[["counts"]][,1]))
+    progress <- shiny::Progress$new(min=0, max=length(featureCounts[["counts"]][,1]))
     on.exit(progress$close())
     progress$set(value=0, message="Loading negative strand...")
     #generate model and cache
     hotgenes::generateStrandModel(startBase=dnaStart, endBase=dnaEnd,
-                                  fc=musCh1fc, chr=dnaChr, strand="-", scaling=baseScale,
+                                  fc=featureCounts, chr=dnaChr, strand="-", scaling=baseScale,
                                   updateProgressBar=function(){progress$inc(1000)})
 
   })
