@@ -34,10 +34,10 @@ ui <- fluidPage(
            radioButtons("strand", "Strand", c("+", "-"))
            ),
     column(4,
-           numericInput("iterations", "Number of iterations to simulate", value=10)
+           numericInput("iterations", "Number of iterations to simulate", value=10, min = 0, step = 1)
            ),
     column(3,
-           numericInput("conductivity", "Heat 'conductivity'", min= 0, max = 1, value = 0.1, step = 0.05)
+           numericInput("conductivity", "Heat 'conductivity'", min = 0, max = 1, value = 0.1, step = 0.05)
            )
   ),
   tags$b("Heated Map(s)"),

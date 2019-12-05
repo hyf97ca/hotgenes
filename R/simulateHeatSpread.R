@@ -21,6 +21,7 @@
 
 simulateHeatSpread <- function(.strandModel, conductivity, iterations)
 {
+  stopifnot({iterations >= 1})
   if (!shiny::isRunning())
   {
     message("simulating heat spread with conductivity ", conductivity, " for ", iterations, " iterations...")
