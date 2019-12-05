@@ -57,7 +57,6 @@ generateLocationModel() is a helper function that creates such a row vector base
 
 Optionally a palette can be specified as per hcl.colors from the grDevices package. You should pick a palette recommended for heatmaps.
 
-
 # Shiny app
 
 The shiny app can be started by running the following code:
@@ -96,3 +95,4 @@ the specific chromosome will have to be specified.
 
 - hotgenes can render multiple datasets (for one chromosome) in the same plot because the featureCounts data structure supports multiple datasets.
 However, your computer's processing power (as of 2019) is probably too low for a snappy result; do so at your own discretion.
+
